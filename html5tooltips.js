@@ -605,7 +605,6 @@ if (typeof exports === "object" && exports &&
   define(function () {
     return html5tooltipsModule;
   });
-
 } else {
   // global object
   init();
@@ -618,7 +617,10 @@ if (typeof exports === "object" && exports &&
     window.addEventListener( "load", documentReadyHandler, false );
   }
 
-  if (window.html5tooltips === undefined) {
+  if (Package !== "undefined") {
+    // Meteor.js
+    html5tooltips = html5tooltipsGlobal;
+  } else if (window.html5tooltips === undefined) {
     window.html5tooltipsPredefined = html5tooltipsPredefined;
     window.html5tooltips = html5tooltipsGlobal;
   }
